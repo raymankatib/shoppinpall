@@ -5,10 +5,21 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
 
+import { init } from '@rematch/core';
+import * as models from './models';
+import { Provider } from 'react-redux';
+
+const store = init({
+	redux: {},
+	models
+});
+
 ReactDOM.render(
 	<ChakraProvider>
 		<React.StrictMode>
-			<App />
+			<Provider store={store}>
+				<App />
+			</Provider>
 		</React.StrictMode>
 	</ChakraProvider>,
 	document.getElementById('root')

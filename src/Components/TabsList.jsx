@@ -1,10 +1,13 @@
 import React from 'react';
 import { Box, Tabs, TabList, TabPanels, Tab, TabPanel, Divider } from '@chakra-ui/react';
+import SearchBoxScreen from './SearchBoxScreen';
+import ApiConfigScreen from './ApiConfigScreen';
+import Screen3 from './Screen3';
 
 export default function TabsList() {
 	return (
 		<Box p={5}>
-			<Tabs variant="soft-rounded" colorScheme="green">
+			<Tabs variant="soft-rounded" colorScheme="teal">
 				<TabList d="flex" justifyContent="space-between" w="80%" m="auto">
 					<Tab w="30%">Screen 1</Tab>
 					<Divider w="100%" pt={5} />
@@ -14,13 +17,13 @@ export default function TabsList() {
 				</TabList>
 				<TabPanels>
 					<TabPanel>
-						<p>one!</p>
+						<SearchBoxScreen />
 					</TabPanel>
 					<TabPanel>
-						<p>two!</p>
+						<ApiConfigScreen />
 					</TabPanel>
 					<TabPanel>
-						<p>three!</p>
+						<Screen3 />
 					</TabPanel>
 				</TabPanels>
 			</Tabs>
