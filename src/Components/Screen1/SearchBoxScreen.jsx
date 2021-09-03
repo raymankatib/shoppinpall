@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { Box, Input, SimpleGrid } from '@chakra-ui/react';
 
 import Card from './Card';
-import { mobilesListData, laptopsListData, watchesListData } from './../data';
+import { mobilesListData, laptopsListData, watchesListData } from '../../data';
 
 export default function SearchBoxScreen() {
 	const userInputRef = useRef();
@@ -31,8 +31,8 @@ export default function SearchBoxScreen() {
 		return (
 			<Box d="flex" flexDir="column" alignItems="center">
 				<Card title={'Mobiles'} bg="teal" />
-				{list.map(({ title, url }) => (
-					<Card title={title} url={url} />
+				{list.map(({ title, url }, i) => (
+					<Card key={i} title={title} url={url} />
 				))}
 			</Box>
 		);

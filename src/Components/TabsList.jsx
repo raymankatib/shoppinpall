@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Tabs, TabList, TabPanels, Tab, TabPanel, Divider } from '@chakra-ui/react';
-import SearchBoxScreen from './SearchBoxScreen';
-import ApiConfigScreen from './ApiConfigScreen';
+import SearchBoxScreen from './Screen1/SearchBoxScreen';
+import ApiConfigScreen from './Screen2/ApiConfigScreen';
 import Screen3 from './Screen3';
 
 export default function TabsList() {
