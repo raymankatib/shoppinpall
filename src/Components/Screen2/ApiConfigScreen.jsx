@@ -1,43 +1,40 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
-import { Box, Text, Radio, RadioGroup, Stack, Select, Input } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 
 import Selector from './Selector';
-function ApiConfigScreen({ methods, selectedMethod, setSelectedMethod }) {
-	const inputRef = useRef();
+import UrlInput from './UrlInput';
+import RadioList from './RadioList';
+import HeaderComponent from './HeaderComponent';
+import SubmitButton from './SubmitButton';
 
-	function handleInputChange() {
-		const userInput = inputRef.current.value;
-		console.log(userInput);
+function ApiConfigScreen({}) {
+	const [numbers, setNumbers] = useState([1]);
+
+	function renderHeaders() {
+		return numbers.map((n) => <HeaderComponent key={n} number={n} />);
 	}
 
 	return (
-		<Box w="100%" m="auto">
-			<RadioGroup onChange={(value) => setSelectedMethod(value)} value={selectedMethod}>
-				<Stack direction="row" justifyContent="center" pt="10px">
-					<Text>Method type:</Text>
-					{methods.map((method) => (
-						<Radio key={method} colorScheme="green" value={method}>
-							{method}
-						</Radio>
-					))}
-				</Stack>
-				<Box d="flex">
-					<Selector />
-					<Input ref={inputRef} onChange={handleInputChange} placeholder="ex: https://www.url.com" />
-				</Box>
-			</RadioGroup>
+		<Box w="75%" m="auto">
+			<RadioList />
+			<Box d="flex" pt={'10px'}>
+				<Selector />
+				<UrlInput />
+			</Box>
+			<Box pt={'10px'}>
+				<Button m={1} onClick={() => setNumbers([...numbers, numbers.length + 1])}>
+					Add header
+				</Button>
+				{renderHeaders()}
+				<SubmitButton />
+			</Box>
 		</Box>
 	);
 }
 
-const mapStateToProps = ({ initState: { methods, selectedMethod } }) => ({
-	methods,
-	selectedMethod
-});
+const mapStateToProps = ({ initState: {} }) => ({});
 
-const mapDispatch = ({ initState: { setSelectedMethodAction } }) => ({
-	setSelectedMethod: setSelectedMethodAction
-});
+const mapDispatch = ({ initState: {} }) => ({});
 
 export default connect(mapStateToProps, mapDispatch)(ApiConfigScreen);
