@@ -6,9 +6,9 @@ import Screen3 from './Screen3';
 
 export default function TabsList() {
 	return (
-		<Box p={5}>
+		<Box p={5} m="auto" d="flex" flexDir="column" justifyContent="space-between" w="80%" m="auto">
 			<Tabs variant="soft-rounded" colorScheme="teal">
-				<TabList d="flex" justifyContent="space-between" w="80%" m="auto">
+				<TabList d="flex" w="80%" m="auto">
 					<Tab w="30%">Screen 1</Tab>
 					<Divider w="100%" pt={5} />
 					<Tab w="30%">Screen 2</Tab>

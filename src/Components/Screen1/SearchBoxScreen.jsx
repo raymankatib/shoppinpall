@@ -39,7 +39,7 @@ export default function SearchBoxScreen() {
 
 	function renderList(list) {
 		return (
-			<Box d="flex" flexDir="column" alignItems="center">
+			<Box>
 				{list.map(({ title, url }, i) => (
 					<Card key={i} title={title} url={url} />
 				))}
@@ -52,10 +52,18 @@ export default function SearchBoxScreen() {
 			<Input ref={userInputRef} placeholder="Search" w="50%" onChange={handleChangeInput} />
 			<Suspense fallback={<ClipLoader css={override} />}>
 				<SimpleGrid h="100%" p="10px" columns={3} spacingX="40px" spacingY="20px">
-					{/* <Card title={'mobiels'} /> */}
-					{renderList(mobilesList)}
-					{renderList(laptopsList)}
-					{renderList(watchesList)}
+					<Box d="flex" flexDir="column">
+						<Card title={'Mobiels'} bg="teal" />
+						{renderList(mobilesList)}
+					</Box>
+					<Box d="flex" flexDir="column">
+						<Card title={'Labtops'} bg="teal" />
+						{renderList(laptopsList)}
+					</Box>
+					<Box d="flex" flexDir="column">
+						<Card title={'Watches'} bg="teal" />
+						{renderList(watchesList)}
+					</Box>
 				</SimpleGrid>
 			</Suspense>
 		</Box>
