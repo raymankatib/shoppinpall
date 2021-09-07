@@ -1,8 +1,18 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, lazy, Suspense } from 'react';
 import { Box, Input, SimpleGrid } from '@chakra-ui/react';
+import { css } from '@emotion/react';
+import ClipLoader from 'react-spinners/ClipLoader';
 
-import Card from './Card';
 import { mobilesListData, laptopsListData, watchesListData } from '../../data';
+
+const override = css`
+	display: block;
+	margin: auto;
+	border-color: teal;
+`;
+
+// import Card from './Card';
+const Card = lazy(() => import('./Card'));
 
 export default function SearchBoxScreen() {
 	const userInputRef = useRef();
@@ -30,7 +40,6 @@ export default function SearchBoxScreen() {
 	function renderList(list) {
 		return (
 			<Box d="flex" flexDir="column" alignItems="center">
-				<Card title={'Mobiles'} bg="teal" />
 				{list.map(({ title, url }, i) => (
 					<Card key={i} title={title} url={url} />
 				))}
@@ -41,11 +50,14 @@ export default function SearchBoxScreen() {
 	return (
 		<Box>
 			<Input ref={userInputRef} placeholder="Search" w="50%" onChange={handleChangeInput} />
-			<SimpleGrid h="100%" p="10px" columns={3} spacingX="40px" spacingY="20px">
-				{renderList(mobilesList)}
-				{renderList(laptopsList)}
-				{renderList(watchesList)}
-			</SimpleGrid>
+			<Suspense fallback={<ClipLoader css={override} />}>
+				<SimpleGrid h="100%" p="10px" columns={3} spacingX="40px" spacingY="20px">
+					{/* <Card title={'mobiels'} /> */}
+					{renderList(mobilesList)}
+					{renderList(laptopsList)}
+					{renderList(watchesList)}
+				</SimpleGrid>
+			</Suspense>
 		</Box>
 	);
 }
